@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('profils', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_profil');
             $table->unsignedBigInteger('mahasiswa_id')->unique();
             $table->string('alamat');
             $table->string('tempat_lahir');
@@ -21,9 +21,9 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('mahasiswa_id')
-                  ->references('id')
-                  ->on('mahasiswas')
-                  ->onDelete('cascade');
+                ->references('id_mahasiswa')
+                ->on('mahasiswas')
+                ->onDelete('cascade');
         });
     }
 

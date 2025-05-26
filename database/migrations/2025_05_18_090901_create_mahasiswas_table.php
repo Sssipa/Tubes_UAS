@@ -12,18 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_mahasiswa');
             $table->string('nim')->unique();
             $table->string('nama');
+            $table->string('alamat')->nullable();
+            $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('email')->unique();
             $table->string('telepon')->nullable();
             $table->unsignedBigInteger('tahun_akademik_id');
             $table->timestamps();
 
             $table->foreign('tahun_akademik_id')
-                  ->references('id')
-                  ->on('tahun_akademiks')
-                  ->onDelete('cascade');
+                ->references('id_tahun_akademik')
+                ->on('tahun_akademiks')
+                ->onDelete('cascade');
         });
     }
 

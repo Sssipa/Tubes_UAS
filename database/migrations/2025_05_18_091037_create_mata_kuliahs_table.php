@@ -12,17 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mata_kuliahs', function (Blueprint $table) {
-            $table->id();
-            $table->string('kode')->unique();
+            $table->bigIncrements('id_mata_kuliah');
+            $table->string('kode');
             $table->string('nama');
             $table->integer('sks');
             $table->unsignedBigInteger('dosen_id')->nullable();
             $table->timestamps();
 
             $table->foreign('dosen_id')
-                  ->references('id')
-                  ->on('dosens')
-                  ->onDelete('set null');
+                ->references('id_dosen')
+                ->on('dosens')
+                ->onDelete('set null');
         });
     }
 

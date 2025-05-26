@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tahun_akademiks', function (Blueprint $table) {
-            $table->id();
-            $table->string('tahun')->unique(); // contoh: 2023/2024
+            $table->bigIncrements('id_tahun_akademik');
+            $table->string('tahun');
             $table->enum('semester', ['Ganjil', 'Genap']);
             $table->boolean('status_aktif')->default(false);
             $table->timestamps();
